@@ -1,21 +1,21 @@
 .PHONY: devnet client
 
-init:
-	solana airdrop 1 HFtqbwbiAe8CCLeRY44BRUhRzBThApUNJ33RVNuygAD8 -u devnet
-	solana airdrop 1 6s542FBTMPvkbq6VHhpjYqkonU5xxnMFkKtLE3CeyfMg -u devnet
-	solana airdrop 1 519XT8Wo4zYcJjJxQb9bWXDWpPoYzkohBkwFNUdbwqYB -u devnet
+airdrop:
+	solana airdrop 2 3ZW4m4DMwhUbP2X5Cyz37wuQQy1ZJeik2HcCfw58RBjB -u devnet
+	solana airdrop 2 JBapzqRzxJWV53xke7spq26zn5hfzu7MvPeSe6mjotBE -u devnet
+	# solana airdrop 2 3H9PuF7JS7p1WV9CVTJTsvKD1QNbBGMdwP8MEjEZbfuN -u devnet
 
 token-account:
 	spl-token create-account D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 --owner devnet/alice.json
 	spl-token create-account D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 --owner devnet/bob.json
 
 state:
-	spl-token account-info --address D7rCqpX5Kdf4cVTU93Ws2UxGFAMNibaNTH5So8CqoYEZ # alice
-	spl-token account-info --address 5kBgjavJeSJC9ztWXdpx13oBku9d8LVVphFCnz5vKNkt # bob
-	spl-token account-info --address 2Q6MhZUNQm56RrcgyGze3rBT6vTSCeqiXWdgdHT8CM9G # carol
+	spl-token account-info --address FWYSDWhWNUd98mbASWgDRjBgjrhux8kgu37WWDkADFkL # alice
+	spl-token account-info --address GhysaXVxNUPLFReuSpXFCR59hMxMV7xs9KwYPBkDkKmr # bob
+	spl-token account-info --address 3go971uFf2CFVkkX9PcLoMXZ3nmnaJfrZcFz14uHCQP9 # carol
 
 mint:
-	spl-token mint D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 1000 D7rCqpX5Kdf4cVTU93Ws2UxGFAMNibaNTH5So8CqoYEZ # mint to alice 300 SPL
+	spl-token mint D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 1000 FWYSDWhWNUd98mbASWgDRjBgjrhux8kgu37WWDkADFkL # mint to alice 300 SPL
 
 deploy:
 	cd program; cargo build-bpf
@@ -43,3 +43,31 @@ client:
 
 # client:
 # 	cd client && npm install && ./node_modules/.bin/ts-node main.ts
+
+# ===================================================
+
+# Old
+
+# init:
+# 	solana airdrop 1 HFtqbwbiAe8CCLeRY44BRUhRzBThApUNJ33RVNuygAD8 -u devnet
+# 	solana airdrop 1 6s542FBTMPvkbq6VHhpjYqkonU5xxnMFkKtLE3CeyfMg -u devnet
+# 	solana airdrop 1 519XT8Wo4zYcJjJxQb9bWXDWpPoYzkohBkwFNUdbwqYB -u devnet
+
+# token-account:
+# 	spl-token create-account D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 --owner devnet/alice.json
+# 	spl-token create-account D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 --owner devnet/bob.json
+
+# state:
+# 	spl-token account-info --address D7rCqpX5Kdf4cVTU93Ws2UxGFAMNibaNTH5So8CqoYEZ # alice
+# 	spl-token account-info --address 5kBgjavJeSJC9ztWXdpx13oBku9d8LVVphFCnz5vKNkt # bob
+# 	spl-token account-info --address 2Q6MhZUNQm56RrcgyGze3rBT6vTSCeqiXWdgdHT8CM9G # carol
+
+# mint:
+# 	spl-token mint D77WLoiZxiFyN8kuzHfGxTjgf6HZ7HPXysK1ZQbK3iK7 1000 D7rCqpX5Kdf4cVTU93Ws2UxGFAMNibaNTH5So8CqoYEZ # mint to alice 300 SPL
+
+# deploy:
+# 	cd program; cargo build-bpf
+# 	solana program deploy program/target/deploy/program.so -u devnet --program-id devnet/program.json
+
+# client:
+# 	cd client; ./node_modules/.bin/ts-node main.ts

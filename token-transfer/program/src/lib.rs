@@ -38,20 +38,20 @@ pub fn process_instruction(
         Instruction::Transfer { amount } => {
             msg!("transfer: {}", amount);
             let ix = spl_token::instruction::transfer(
-                token_info.key, // token's program
-                from_token_info.key, // alice's token acc
-                to_token_info.key, // bob's token acc
-                from_info.key, // alice's wallet
-                &[from_info.key], // alice's wallet
+                token_info.key, // token program
+                from_token_info.key, // alice token acc
+                to_token_info.key, // bob token acc
+                from_info.key, // alice wallet
+                &[from_info.key], // alice wallet
                 amount,
             )?;
             invoke(
                 &ix, // instraction
                 &[
-                    from_token_info.clone(), // alice's token acc
-                    to_token_info.clone(), // bob's token acc
-                    from_info.clone(), // alice's wallet
-                    token_info.clone(), // token's program
+                    from_token_info.clone(), // alice token acc
+                    to_token_info.clone(), // bob token acc
+                    from_info.clone(), // alice wallet
+                    token_info.clone(), // token program
                 ],
             )?;
             msg!(
